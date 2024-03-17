@@ -12,11 +12,9 @@ import {
  
 export default defineConfig({
   shortcuts: [
-    // ...
   ],
   theme: {
     colors: {
-      // ...
     }
   },
   presets: [
@@ -26,7 +24,6 @@ export default defineConfig({
     presetTypography(),
     presetWebFonts({
       fonts: {
-        // ...
       },
     }),
   ],

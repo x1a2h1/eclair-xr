@@ -2,8 +2,8 @@
 
 </script>
 <template>
-  <div class="">
-    <div class="border">导航栏</div>
+    <NavMenu />
+  <div class="flex justify-center m-4% dark:bg-gray-800">
     <RouterView />
   </div>
 </template>
