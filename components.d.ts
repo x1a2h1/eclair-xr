@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AFrame: typeof import('./src/components/AFrame.vue')['default']
     CardList: typeof import('./src/components/CardList.vue')['default']
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElButton: typeof import('element-plus/es')['ElButton']
