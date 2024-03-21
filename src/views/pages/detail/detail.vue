@@ -6,11 +6,11 @@ const state = reactive({
 })
 import { ElLoading } from 'element-plus'
 onBeforeMount(async()=>{
-  method.init()
+  await method.init()
 })
 const method = {
-  init: () => {
-    const loadingInstance = ElLoading.service({
+  init: async() => {
+    const loadingInstance = await ElLoading.service({
       fullscreen: true,
       text: '加载场景中...',
       background: state.isDark ? '#000' : '#fff',
@@ -18,8 +18,10 @@ const method = {
 
     setTimeout(() => {
       loadingInstance.close()
-    }, 5000);
+    }, 2000);
   }
 }
 </script>
-<template>{{ $route.params.id }}</template>
+<template>
+<h1>详情页</h1>
+</template>

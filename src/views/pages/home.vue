@@ -18,7 +18,7 @@ const method = {
   <div>
     <div>bannar</div>
     <el-space wrap :size="40" class="mt-10">
-      <el-card v-for="i in 4" :key="i" class="hover:-mt-2" body-class="w-80">
+      <el-card v-for="i in 20" :key="i" class="hover:-mt-2" body-class="w-80">
         <div class="flex">
           <div class="flex flex-col items-start">
             开发文档

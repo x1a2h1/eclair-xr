@@ -7,7 +7,9 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+loading:Boolean
 })
+console.log(props.loading);
 
 const state = reactive({
   data: [

@@ -17,21 +17,23 @@ const method = {
 }
 </script>
 <template>
-  <el-menu :default-active="state.activeIndex" class="w-full" mode="horizontal" :ellipsis="false"
-    @select="method.handleSelect()">
-    <el-menu-item>
-      <RouterLink class="flex pl-4%" to="/">
-        <img class="w-45 h-auto" src="https://inis.cc/assets/imgs/logo-white.png" alt="logo" />
-      </RouterLink>
+  <div class="">
+    <el-menu :default-active="state.activeIndex" mode="horizontal" :ellipsis="false" @select="method.handleSelect()">
+      <el-menu-item>
+        <RouterLink class="flex" to="/">
+          <img class="w-45 h-auto" src="https://inis.cc/assets/imgs/logo-white.png" alt="logo" />
+        </RouterLink>
 
-    </el-menu-item>
-    <div class="flex-grow" />
-    <el-menu-item index="1">Processing Center</el-menu-item>
-    <div class=" flex items-center justify-center pr-4%">
-      <el-switch v-model="state.isDark">
-        <template #active-action>亮</template>
-        <template #inactive-action>暗</template>
-      </el-switch>
-    </div>
-  </el-menu>
+      </el-menu-item>
+      <div class="flex-grow" />
+      <el-menu-item index="1">Processing Center</el-menu-item>
+      <div class=" flex items-center justify-center pr-4%">
+        <el-switch v-model="state.isDark">
+          <template #active-action>亮</template>
+          <template #inactive-action>暗</template>
+        </el-switch>
+      </div>
+    </el-menu>
+  </div>
+
 </template>
