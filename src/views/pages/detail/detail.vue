@@ -2,17 +2,33 @@
 import { onBeforeMount, reactive } from 'vue';
 import { useDark } from '@vueuse/core'
 import AFrame from 'aframe';
+import { ElLoading } from 'element-plus'
 
 const state = reactive({
   isDark: useDark(),
   videoPlayer: false,
 })
-import { ElLoading } from 'element-plus'
 onBeforeMount(async () => {
   await method.init()
 })
 const method = {
   init: async () => {
+    let vd: any = navigator
+    console.log("xr", vd.xr, vd.xr.ondevicechange);
+    if (vd.xr.ondevicechange == null&&undefined) {
+      ElNotification.warning({
+        title: '设备未连接',
+        message: '未识别到可用设备，可通过鼠标操作',
+        showClose: false,
+      })
+    } else {
+      ElNotification.success({
+        title: '设备已连接',
+        message: '设备已连接，可通过手柄操作',
+        showClose: false,
+      })
+    }
+
     const loadingInstance = ElLoading.service({
       fullscreen: true,
       text: '加载场景中...',
@@ -33,6 +49,10 @@ const method = {
       myVideo.pause();
       videoControls.setAttribute('src', '#play')
     }
+  },
+  test: () => {
+    console.log('test');
+
   }
 }
 
@@ -59,7 +79,7 @@ const method = {
         </div>
       </template>
       <div class="shadow-lg">
-        <a-scene avatar-renderer embedded class="w-full h-3xl">
+        <a-scene avatar-renderer embedded class="w-full h-3xl" cursor="rayOrigin: mouse">
           <a-assets>
             <img id="imggg" src="/favicon.png" alt="">
           </a-assets>
@@ -68,11 +88,20 @@ const method = {
           <a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
           <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
           <a-sky color="#ECECEC"></a-sky>
+          <!-- Hands. -->
+          <a-entity id="teleHand" hand-controls="left"
+            teleport-controls="type: parabolic; collisionEntities: [mixin='voxel'], #ground"></a-entity>
+
+          <a-entity id="blockHand" hand-controls="right" controller-cursor
+            intersection-spawn="event: click; mixin: voxel"></a-entity>
+
+          <a-entity vive-controls="hand: left"></a-entity>
+          <a-entity laser-controls="hand: right"><a-cursor></a-cursor></a-entity>
+
           <a-entity position="0 0 3.8">
             <a-camera>
-              <a-image src="imggg">
-
-              </a-image>
+              <a-cursor></a-cursor>
+              <a-image src="#imggg" position="-1.25 1.15 -1.5" width=".1" height=".1" @click="method.test()"></a-image>
             </a-camera>
           </a-entity>
         </a-scene>

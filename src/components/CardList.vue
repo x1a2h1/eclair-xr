@@ -40,7 +40,7 @@ const method = {
 }
 </script>
 <template>
-  <el-space v-loading="loading" :size="45">
+  <el-space v-loading="loading" :size="45" wrap>
     <div v-for="(item, index) in state.data"
     @click="method.go(item.id)"
       class="w-sm h-75 p-0 m-0 flex flex-col  shadow rd-3 bg-gray-100 dark:bg-gray-900" :key="index">

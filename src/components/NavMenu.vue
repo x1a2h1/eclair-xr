@@ -4,21 +4,23 @@ import { useDark, useToggle } from '@vueuse/core'
 const state = reactive({
   activeIndex: '2',
   isDark: useDark(),
-  navData: []
+  navData: [],
+  showSetting: false,
 })
 onMounted(async () => {
   await method.init()
 })
 const method = {
-  init: () => {
+  init: async() => {
     console.log(useDark, useToggle);
   },
   handleSelect: () => { },
   openSetting: () => {
     // 打开设置
+    state.showSetting = true
     let vd = window.navigator?.xr
-  console.log('显示连接设备',vd);
-  
+    console.log('显示连接设备', vd);
+
   }
 }
 </script>
@@ -35,14 +37,20 @@ const method = {
       <el-menu-item index="1">课程</el-menu-item>
       <div class=" flex items-center justify-center pr-4%">
         <el-switch v-model="state.isDark">
-          <template #active-action>亮</template>
-          <template #inactive-action>暗</template>
+          <template #active-action>
+            <div class="i-material-symbols-dark-mode w-2em h-2em" />
+          </template>
+          <template #inactive-action>
+            <div class="i-material-symbols-light-mode" />
+          </template>
         </el-switch>
         <div class="pl-4">
-        <div @click="method.openSetting()" class="i-material-symbols-settings-applications-rounded w-2em h-2em" />
+          <div @click="method.openSetting()" class="i-material-symbols-settings-applications-rounded w-2em h-2em" />
+          <el-drawer v-model="state.showSetting" title="setting">
+            
+          </el-drawer>
         </div>
       </div>
-      
     </el-menu>
   </div>
 
