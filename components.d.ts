@@ -18,8 +18,11 @@ declare module 'vue' {
     ElSpace: typeof import('element-plus/es')['ElSpace']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
+    RepulsionEffect: typeof import('./src/components/RepulsionEffect/RepulsionEffect.vue')['default']
+    RepulsiveEffect: typeof import('./src/components/RepulsionEffect/RepulsiveEffect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Scene: typeof import('./src/components/RepulsionEffect/scene.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

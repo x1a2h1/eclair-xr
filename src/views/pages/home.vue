@@ -15,8 +15,9 @@ const method = {
 }
 </script>
 <template>
-  <div>
-    <div>bannar</div>
+    <RepulsionEffect />
+
+  <div class="m-4% flex flex-col items-start justify-between">
     <el-space wrap :size="40" class="mt-10">
       <el-card v-for="i in 20" :key="i" class="hover:-mt-2" body-class="w-80">
         <div class="flex">
