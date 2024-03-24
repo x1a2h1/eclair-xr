@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TresCanvas, useSeek } from '@tresjs/core';
+import { TresCanvas } from '@tresjs/core';
 import { reactive } from 'vue';
 
 
@@ -14,13 +14,13 @@ const state: any = reactive({
 </script>
 <template>
   <div class="repulsion-effect__content">
-    <h2>PERRIN</h2>
-    <h3>chocolaterie</h3>
+    <h2>eclair XR</h2>
+    <h3>基于VR/AR在线上教育的应用</h3>
   </div>
   <div class="repulsion-effect__bg" />
   <div id="canvas">
     <TresCanvas v-bind="state.gl">
-      <TresPerspectiveCamera :position="[0, 65, 1.5]" :rotation-x="-1.57" :fov="20" />
+      <TresPerspectiveCamera :position="[0, 55, 1.5]" :rotation-x="-1.57" :fov="20" />
       <!-- <OrbitControls /> -->
       <TresAmbientLight color="#ffffff" />
 
@@ -59,7 +59,7 @@ const state: any = reactive({
   bottom: 0;
   z-index: -99;
   pointer-events: none;
-  @apply bg-[#d8bcac] dark:bg-[#d8b]
+  @apply bg-white dark:bg-black;
 }
 
 .repulsion-effect__content {
@@ -67,10 +67,29 @@ const state: any = reactive({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: -11;
   display: flex;
   flex-direction: column;
   align-items: center;
   pointer-events: none;
+}
+
+h3 {
+  color: #c13535;
+  font-size: 3vw;
+  font-family: 'Sacramento', cursive;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 8vw;
+  color: #48271b;
+  text-transform: uppercase;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 1;
 }
 </style>

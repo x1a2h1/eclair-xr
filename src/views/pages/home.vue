@@ -1,25 +1,24 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 
-const state =reactive({
-  loading:false
+const state = reactive({
+  loading: false
 })
 
 const method = {
-  loading:()=>{
-  state.loading = !state.loading;
-  setTimeout(() => {
-  state.loading = !state.loading;
-  }, 3000);
+  loading: () => {
+    state.loading = !state.loading;
+    setTimeout(() => {
+      state.loading = !state.loading;
+    }, 3000);
   }
 }
 </script>
 <template>
-    <RepulsionEffect />
-
-  <div class="m-4% flex flex-col items-start justify-between">
-    <el-space wrap :size="40" class="mt-10">
-      <el-card v-for="i in 20" :key="i" class="hover:-mt-2" body-class="w-80">
+  <RepulsionEffect />
+  <div class="flex flex-col">
+    <el-space wrap :size="40" class="flex justify-center">
+      <el-card v-for="i in 4" :key="i" class="hover:-mt-2" body-class="w-80">
         <div class="flex">
           <div class="flex flex-col items-start">
             开发文档
@@ -32,13 +31,15 @@ const method = {
       </el-card>
     </el-space>
 
-    <div id="热门列表" class="mt-10">
+    <div id="热门列表" class="mt-10 flex flex-col ma">
       <div class="flex">
-        <div class="i-streamline-emojis:fire w-2em h-2em"/>
+        <div class="i-streamline-emojis:fire w-2em h-2em" />
         <span class="font-size-6">热门课程</span>
-        <el-button size="small" class="ml-2" @click="method.loading()" round><div class="i-mage:reload w-1em h-1em"></div>换一批</el-button>
+        <el-button size="small" class="ml-2" @click="method.loading()" round>
+          <div class="i-mage:reload w-1em h-1em"></div>换一批
+        </el-button>
       </div>
-      <div class="mt-5">
+      <div class="mt-5 flex items-center justify-center">
         <CardList :loading="state.loading" />
       </div>
     </div>

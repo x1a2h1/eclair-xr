@@ -20,7 +20,7 @@ const state = reactive({
 watch(shapesGroup, () => {
   meshes.value = seekAll(shapesGroup.value, 'type', 'Mesh')
 
-  meshes.value.forEach(mesh => {
+  meshes.value.forEach((mesh:any) => {
     mesh.initialRotation = {
       x: mesh.name === 'torus' ? degToRad(90) : mesh.rotation.x,
       y: mesh.rotation.y,
@@ -39,12 +39,12 @@ const method = {
   map: (value: number, start1: number, stop1: number, start2: number, stop2: number) => {
   return (value - start1) / (stop1 - start1) * (stop2 - start2) + start2
 },
-  onPointerMove: ({ point }) => {
+  onPointerMove: ({ point }:object |any) => {
     if (!meshes.value) return
 
     const { x, y, z } = point
 
-  meshes.value.forEach(mesh => {
+  meshes.value.forEach((mesh:any) => {
       const mouseDistance = method.distance(x, z,
         mesh.position.x,
         mesh.position.z);
