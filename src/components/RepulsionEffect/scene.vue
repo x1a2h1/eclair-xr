@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Cone, Plane } from '@tresjs/cientos';
 import { useSeek } from '@tresjs/core';
-import { degToRad } from 'three/src/math/MathUtils';
+// import { degToRad } from 'three/src/math/MathUtils';
+import { degToRad } from 'three/src/math/MathUtils.js';
 import { computed, reactive, shallowRef, watch } from 'vue';
 import { gsap } from 'gsap';
 
@@ -42,7 +43,7 @@ const method = {
   onPointerMove: ({ point }:object |any) => {
     if (!meshes.value) return
 
-    const { x, y, z } = point
+    const { x, z } = point
 
   meshes.value.forEach((mesh:any) => {
       const mouseDistance = method.distance(x, z,
@@ -110,19 +111,19 @@ const gridOffset = computed(() => {
         <TresMesh v-if="method.getShapeType(row, col) === 'torus'" name="torus" cast-shadow receive-shadow
           :position="method.computePosition(col, row)">
           <TresTorusGeometry :args="[.25, .08, 30, 200]" />
-          <TresMeshPhysicalMaterial color="#3e2917" :metalness=".58" emissive="#000000" :roughness=".05" />
+          <TresMeshPhysicalMaterial color="#FF9999" :metalness=".58" emissive="#000000" :roughness=".05" />
         </TresMesh>
 
         <!-- Cone -->
         <Cone v-else-if="method.getShapeType(row, col) === 'cone'" name="cone" :args="[.3, .5, 32]" cast-shadow receive-shadow
           :position="method.computePosition(col, row)">
-          <TresMeshPhysicalMaterial color="#3e2917" :metalness=".58" emissive="#000000" :roughness=".05" />
+          <TresMeshPhysicalMaterial color="#FFFFCC" :metalness=".58" emissive="#000000" :roughness=".05" />
         </Cone>
 
         <!-- Cylinder Mesh -->
         <TresMesh v-else name="cylinder" cast-shadow receive-shadow :position="method.computePosition(col, row)">
           <TresCylinderGeometry :args="[.3, .3, .2, 64]" />
-          <TresMeshPhysicalMaterial color="#3e2917" :metalness=".58" emissive="#000000" :roughness=".05" />
+          <TresMeshPhysicalMaterial color="#CCCCFF" :metalness=".58" emissive="#000000" :roughness=".05" />
         </TresMesh>
       </TresGroup>
     </TresGroup>

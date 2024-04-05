@@ -25,14 +25,14 @@ const state: any = reactive({
       <TresAmbientLight color="#ffffff" />
 
       <TresPointLight color="#fff000" :intensity="5" :decay="0" :position="[0, 5, -20]" />
-      <TresPointLight color="#79573e" :intensity="5" :decay="0" :position="[35, 5, 0]" />
-      <TresPointLight color="#c27439" :intensity="5" :decay="0" :position="[-35, 5, 0]" />
+      <TresPointLight color="#CCFFFF" :intensity="5" :decay="0" :position="[35, 5, 0]" />
+      <TresPointLight color="#FFCCCC" :intensity="5" :decay="0" :position="[-35, 5, 0]" />
       <TresPointLight color="#fff000" :intensity="5" :decay="0" :position="[0, 5, 20]" />
 
       <TresSpotLight color="#7bccd7" :decay="0" cast-shadow :shadow-mapSize-width="2048" :shadow-mapSize-height="2048"
         :position="[0, 25, 0]" />
 
-      <TresRectAreaLight color="#341212" :decay="0" :width="1000" :height="1000" :position="[5, 20, 50]"
+      <TresRectAreaLight color="#FF9999" :decay="0" :width="1000" :height="1000" :position="[5, 20, 50]"
         :look-at="[0, 0, 0]" />
     <scene />
     </TresCanvas>
@@ -59,7 +59,7 @@ const state: any = reactive({
   bottom: 0;
   z-index: -99;
   pointer-events: none;
-  @apply bg-white dark:bg-black;
+  @apply bg-white dark:bg-[#333333];
 }
 
 .repulsion-effect__content {
@@ -75,7 +75,7 @@ const state: any = reactive({
 }
 
 h3 {
-  color: #c13535;
+  color: #FF6666;
   font-size: 3vw;
   font-family: 'Sacramento', cursive;
   font-weight: 400;
@@ -85,7 +85,7 @@ h3 {
 
 h2 {
   font-size: 8vw;
-  color: #48271b;
+  color: #CCFFFF;
   text-transform: uppercase;
   margin: 0;
   font-family: 'Montserrat', sans-serif;

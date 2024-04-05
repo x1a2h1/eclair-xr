@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.193",
+    "@types/aframe": "^1.2.6",
     "@types/three": "^0.162.0",
     "@unocss/preset-icons": "^0.58.6",
     "@vitejs/plugin-vue": "^5.0.4",

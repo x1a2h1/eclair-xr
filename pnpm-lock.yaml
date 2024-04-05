@@ -37,6 +37,9 @@ devDependencies:
   '@iconify/json':
     specifier: ^2.2.193
     version: 2.2.193
+  '@types/aframe':
+    specifier: ^1.2.6
+    version: 1.2.6
   '@types/three':
     specifier: ^0.162.0
     version: 0.162.0
@@ -891,6 +894,17 @@ packages:
     resolution: {integrity: sha512-ZpboH7pCPPeyBWKf8c7TJswtCEQObFo3bOBYalm99NzZarATALYCo5OhbCa/n4RQyJyHfhkdx+hNrdL5ByFYDw==}
     dev: true
 
+  /@types/aframe@1.2.6:
+    resolution: {integrity: sha512-8F1PAuHgK5kEJVIvUEobbryRMg060xSvHu+WqCjkwmsaafjAcjIbk/CXB9qOvcAVGzz1EPb50ddR/wSY4pI/sA==}
+    dependencies:
+      '@types/animejs': 3.1.12
+      '@types/three': 0.162.0
+    dev: true
+
+  /@types/animejs@3.1.12:
+    resolution: {integrity: sha512-fpdH+ZtlO0kqjTOqRaBdsEmvpRNOayI8k4EVkEtitL5l6wducDOXk0rgQgfZqWf/ZX9DzXrHf257S5i9xTcISQ==}
+    dev: true
+
   /@types/draco3d@1.4.9:
     resolution: {integrity: sha512-4MMUjMQb4yA5fJ4osXx+QxGHt0/ZSy4spT6jL1HM7Tn8OJEC35siqdnpOo+HxPhYjqEFumKfGVF9hJfdyKBIBA==}
     dev: false
@@ -1359,7 +1373,7 @@ packages:
       promise-polyfill: 3.1.0
       super-animejs: 3.1.0
       super-three: 0.158.0
-      three-bmfont-text: github.com/dmarcos/three-bmfont-text/eed4878795be9b3e38cf6aec6b903f56acd1f695
+      three-bmfont-text: git@github.com+dmarcos/three-bmfont-text/eed4878795be9b3e38cf6aec6b903f56acd1f695
       webvr-polyfill: 0.10.12
     transitivePeerDependencies:
       - supports-color
@@ -2979,8 +2993,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/dmarcos/three-bmfont-text/eed4878795be9b3e38cf6aec6b903f56acd1f695:
-    resolution: {tarball: https://codeload.github.com/dmarcos/three-bmfont-text/tar.gz/eed4878795be9b3e38cf6aec6b903f56acd1f695}
+  git@github.com+dmarcos/three-bmfont-text/eed4878795be9b3e38cf6aec6b903f56acd1f695:
+    resolution: {commit: eed4878795be9b3e38cf6aec6b903f56acd1f695, repo: git@github.com:dmarcos/three-bmfont-text.git, type: git}
     name: three-bmfont-text
     version: 3.0.0
     dependencies:

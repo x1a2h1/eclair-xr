@@ -7,19 +7,19 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AFrame: typeof import('./src/components/AFrame.vue')['default']
     CardList: typeof import('./src/components/CardList.vue')['default']
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
+    ElLoading: typeof import('element-plus/es')['ElLoading']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElNotification: typeof import('element-plus/es')['ElNotification']
     ElSpace: typeof import('element-plus/es')['ElSpace']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
     RepulsionEffect: typeof import('./src/components/RepulsionEffect/RepulsionEffect.vue')['default']
-    RepulsiveEffect: typeof import('./src/components/RepulsionEffect/RepulsiveEffect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Scene: typeof import('./src/components/RepulsionEffect/scene.vue')['default']

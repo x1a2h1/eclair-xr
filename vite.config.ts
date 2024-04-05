@@ -4,8 +4,8 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-// https://vitejs.dev/config/
 import { templateCompilerOptions } from '@tresjs/core'
+
 export default defineConfig({
   plugins: [
     vue(

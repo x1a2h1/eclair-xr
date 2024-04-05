@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { onBeforeMount, reactive } from 'vue';
 import { useDark } from '@vueuse/core'
-import AFrame from 'aframe';
-import { ElLoading } from 'element-plus'
 
 const state = reactive({
   isDark: useDark(),
@@ -39,7 +37,7 @@ const method = {
   onclick: () => {
     console.log("clicked");
     var myVideo: any = document.querySelector('#surfer');
-    var videoControls = document.querySelector('#videoControls');
+    var videoControls:any = document.querySelector('#videoControls');
     state.videoPlayer = !state.videoPlayer
     // 检查视频是否正在播放
     if (myVideo.paused) {
@@ -71,7 +69,7 @@ const method = {
         <a-camera></a-camera>
     </a-entity>
   </a-scene> -->
-  <div class=" flex">
+  <div class=" flex ml-4% mr-4%">
     <el-card class="w-full">
       <template #header>
         <div class="card-header">
