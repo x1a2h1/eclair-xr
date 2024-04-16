@@ -6,6 +6,7 @@ import AFRAME from 'aframe';
 import 'aframe-blink-controls'
 import 'aframe-extras';
 import { onMounted } from 'vue';
+import { ElLoading, ElNotification } from 'element-plus';
 
 
 
@@ -19,7 +20,7 @@ onMounted(async () => {
 })
 const method = {
   init: async () => {
-    const loadingInstance = ElLoading.service({
+    const loadingInstance:any = ElLoading.service({
       fullscreen: true,
       text: '加载场景中...',
       background: state.isDark ? '#000' : '#fff',
@@ -55,7 +56,7 @@ const method = {
   },
   onclick: () => {
     var myVideo: any = document.querySelector('#surfer');
-    var videoControls: any = document.querySelector('#videoControls');
+    // var videoControls: any = document.querySelector('#videoControls');
     state.videoPlayer = !state.videoPlayer
     // 检查视频是否正在播放
     if (myVideo.paused) {
@@ -74,7 +75,6 @@ const method = {
   },
   test: () => {
     console.log('test');
-
   }
 }
 
@@ -102,7 +102,7 @@ const method = {
 
           <a-entity sound="src: #river"></a-entity>
 
-          <a-entity glTF-model="url(/school.glb)"></a-entity>
+          <a-entity glTF-model="url(https://xiazhi-1258402950.cos.ap-guangzhou.myqcloud.com/school.glb)"></a-entity>
 
           <a-sky id="bg" radius="90" src="#skyTexture" theta-length="180"></a-sky>
           <a-video v-if="state.videoPlayer" src="#surfer" width="6" height="1.5" position="0 1.5 6.05"

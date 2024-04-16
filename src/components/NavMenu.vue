@@ -47,8 +47,8 @@ const method = {
         </el-switch>
         <div class="pl-4">
           <div @click="method.openSetting()" class="i-material-symbols-settings-applications-rounded w-2em h-2em" />
-          <el-drawer v-model="state.showSetting" title="setting">
-            
+          <el-drawer v-model="state.showSetting" title="设置" size="300">
+            性能面板
           </el-drawer>
         </div>
       </div>
