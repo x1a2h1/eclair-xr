@@ -96,7 +96,7 @@ const method = {
         <a-scene :stats="settings.aframeStatus" avatar-renderer embedded class="w-full sm:h-sm lg:h-lg xl:h-xl xxl:h-5xl">
 
           <a-assets>
-            <a-asset-item id="obj" src="/dfh.obj"></a-asset-item>
+            <a-asset-item id="school" src="/school.glb"></a-asset-item>
             <img id="imggg" src="/favicon.png" alt="">
             <img id="skyTexture" src="/background.jpg">
             <video id="surfer" src="/183279.mp4" loop="true"></video>
@@ -105,7 +105,7 @@ const method = {
 
           <a-entity sound="src: #river"></a-entity>
 
-          <a-entity glTF-model="url(/school.glb)"></a-entity>
+          <a-entity glTF-model="#school"></a-entity>
 
           <a-sky id="bg" radius="90" src="#skyTexture" theta-length="180"></a-sky>
           <a-video v-if="state.videoPlayer" src="#surfer" width="6" height="1.5" position="0 1.5 6.05"
