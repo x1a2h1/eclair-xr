@@ -1,19 +1,42 @@
 <script lang="ts" setup>
-import { onBeforeMount, reactive } from 'vue';
-import { useDark } from '@vueuse/core'
+import { reactive } from 'vue';
+import { useDark } from '@vueuse/core';
+
+import AFRAME from 'aframe';
+import 'aframe-blink-controls'
+import 'aframe-extras';
+import { onMounted } from 'vue';
+
+
 
 const state = reactive({
   isDark: useDark(),
   videoPlayer: false,
 })
-onBeforeMount(async () => {
+
+onMounted(async () => {
   await method.init()
 })
 const method = {
   init: async () => {
+    const loadingInstance = ElLoading.service({
+      fullscreen: true,
+      text: '加载场景中...',
+      background: state.isDark ? '#000' : '#fff',
+    })
     let vd: any = navigator
     console.log("xr", vd.xr, vd.xr.ondevicechange);
-    if (vd.xr.ondevicechange == null&&undefined) {
+
+    var scene = document.querySelector('a-scene');
+
+    if (scene.hasLoaded) {
+      console.log(12312312312);
+    } else {
+      scene.addEventListener('loaded', loadingInstance.close())
+    }
+
+
+    if (!AFRAME.utils.device.checkHeadsetConnected()) {
       ElNotification.warning({
         title: '设备未连接',
         message: '未识别到可用设备，可通过鼠标操作',
@@ -22,31 +45,32 @@ const method = {
     } else {
       ElNotification.success({
         title: '设备已连接',
-        message: '设备已连接，可通过手柄操作',
+        message: '已识别到可用设备，可通过手柄操作',
         showClose: false,
       })
     }
 
-    const loadingInstance = ElLoading.service({
-      fullscreen: true,
-      text: '加载场景中...',
-      background: state.isDark ? '#000' : '#fff',
-    })
-    loadingInstance.close()
+
+
   },
   onclick: () => {
-    console.log("clicked");
     var myVideo: any = document.querySelector('#surfer');
-    var videoControls:any = document.querySelector('#videoControls');
+    var videoControls: any = document.querySelector('#videoControls');
     state.videoPlayer = !state.videoPlayer
     // 检查视频是否正在播放
     if (myVideo.paused) {
       myVideo.play();
-      videoControls.setAttribute('src', '#pause');
+      console.log(state.videoPlayer);
+      
     } else {
       myVideo.pause();
-      videoControls.setAttribute('src', '#play')
     }
+  },
+  trigerdown: () => {
+    alert('按下扳机')
+  },
+  loaded: () => {
+    console.log("loaded咯啊点咯9阿迪");
   },
   test: () => {
     console.log('test');
@@ -57,18 +81,6 @@ const method = {
 
 </script>
 <template>
-  <!-- 自定义 vr按钮 -->
-  <!-- <a-scene embedded class="w-200 h-100 z222">
-      <a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-    <a-box position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1"  color="#4CC3D9"></a-box>
-    <a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-    <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-
-    <a-sky color="#ECECEC"></a-sky>
-    <a-entity position="0 0 3.8">
-        <a-camera></a-camera>
-    </a-entity>
-  </a-scene> -->
   <div class=" flex ml-4% mr-4%">
     <el-card class="w-full">
       <template #header>
@@ -77,35 +89,64 @@ const method = {
         </div>
       </template>
       <div class="shadow-lg">
-        <a-scene avatar-renderer embedded class="w-full h-3xl" cursor="rayOrigin: mouse">
+        <!-- 场景开始 -->
+        <a-scene stats avatar-renderer embedded class="w-full h-3xl">
+
           <a-assets>
+            <a-asset-item id="obj" src="/dfh.obj"></a-asset-item>
             <img id="imggg" src="/favicon.png" alt="">
+            <img id="skyTexture" src="/background.jpg">
+            <video id="surfer" src="/183279.mp4" loop="true"></video>
+            <audio id="river" src="river.mp3" preload="auto"></audio>
           </a-assets>
-          <a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-          <a-box position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-box>
-          <a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-          <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-          <a-sky color="#ECECEC"></a-sky>
-          <!-- Hands. -->
-          <a-entity id="teleHand" hand-controls="left"
-            teleport-controls="type: parabolic; collisionEntities: [mixin='voxel'], #ground"></a-entity>
 
-          <a-entity id="blockHand" hand-controls="right" controller-cursor
-            intersection-spawn="event: click; mixin: voxel"></a-entity>
+          <a-entity sound="src: #river"></a-entity>
 
-          <a-entity vive-controls="hand: left"></a-entity>
-          <a-entity laser-controls="hand: right"><a-cursor></a-cursor></a-entity>
+          <a-entity glTF-model="url(/school.glb)"></a-entity>
 
-          <a-entity position="0 0 3.8">
-            <a-camera>
-              <a-cursor></a-cursor>
-              <a-image src="#imggg" position="-1.25 1.15 -1.5" width=".1" height=".1" @click="method.test()"></a-image>
-            </a-camera>
+          <a-sky id="bg" radius="90" src="#skyTexture" theta-length="180"></a-sky>
+          <a-video v-if="state.videoPlayer" src="#surfer" width="6" height="1.5" position="0 1.5 6.05"
+            rotation="0 -180 0"></a-video>
+          <a-image id="videoControls" position="0 1 5" scale="1 1 1" rotation="0 0 0" play-pause
+            @click="method.onclick">
+          </a-image>
+          
+          <!-- <a-plane position="0 0 0" rotation="-90 0 0" width="40" height="40" color="#7BC8A4"></a-plane> -->
+          <!-- handControls手部控制器 -->
+          <a-entity id="camera-rig" movement-controls="camera: #head;" position="0 1 0">
+            <a-entity id="head" look-controls="pointerLockEnabled: true" camera position="0 1.6 0">
+            </a-entity>
+
+            <a-entity 
+            id="left-hand" 
+            hand-controls="hand: left"
+            </a-entity>
+
+            <a-entity id="right-hand" 
+              hand-controls="hand: right"
+              laser-controls="hand: right"
+              raycaster="far: 10; objects: [clickable]; showLine: true; lineColor: #5DEBD7;"
+        position="0 12 0"
+            >
+            <a-sphere id="hand-right-collider"
+          radius="0.2"
+          visible="false"
+          physx-body="type: kinematic; emitCollisionEvents: true">
+        </a-sphere>
+            </a-entity>
           </a-entity>
         </a-scene>
+
+        <!-- 场景结束 -->
+
       </div>
       <div class="mt-10">
-        <div> 场景描述 description</div>
+        <div class="bg-amber w-8em font-bold text-center rounded-2">场景描述</div>
+        <div class="mt-4">
+          <p>
+            这是一个美丽的场景，展示了学校的建筑和环境。你可以看到学校的大门、教学楼、操场和绿化。整个场景呈现出一种宁静和整洁的氛围，为学生提供了一个良好的学习环境。
+          </p>
+        </div>
       </div>
     </el-card>
     <el-card class="ml-4%" style="min-width: 300px">

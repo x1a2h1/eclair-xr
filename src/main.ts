@@ -7,4 +7,5 @@ import AFrame from 'aframe'
 
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+
 createApp(App).use(router).use(AFrame).mount('#app')

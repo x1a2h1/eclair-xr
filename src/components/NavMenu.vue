@@ -35,6 +35,7 @@ const method = {
       </el-menu-item>
       <div class="flex-grow" />
       <el-menu-item index="1">课程</el-menu-item>
+      <el-menu-item index="1">AR</el-menu-item>
       <div class=" flex items-center justify-center pr-4%">
         <el-switch v-model="state.isDark">
           <template #active-action>

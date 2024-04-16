@@ -5,8 +5,12 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { templateCompilerOptions } from '@tresjs/core'
+import mkcert from 'vite-plugin-mkcert'
 
 export default defineConfig({
+  server:{
+    https: true
+  },
   plugins: [
     vue(
       {...templateCompilerOptions}
@@ -17,6 +21,8 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ElementPlusResolver()],
-    })
+    }),
+    mkcert(),
   ],
+
 })
