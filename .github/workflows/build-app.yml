@@ -23,14 +23,13 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
 
       - name: Install Rust for windows-latest
         if: inputs.platform == 'windows-latest'
