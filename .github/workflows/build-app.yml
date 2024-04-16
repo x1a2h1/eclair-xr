@@ -1,16 +1,17 @@
 name: Build App
 on:
   workflow_dispatch:
-  inputs:
-    platform:
-      description: 'platform'
-      required: true
-      default: 'windows-latest'
-      type: choice
-      options:
-        - 'windows-latest'
-        - 'macos-latest'
-        - 'ubuntu-20.04'
+    inputs:
+      platform:
+        description: 'platform'
+        required: true
+        default: 'macos-latest'
+        type: choice
+        options:
+          - 'windows-latest'
+          - 'macos-latest'
+          - 'ubuntu-20.04'
+          
   push:
     branches: [ main ]
 
