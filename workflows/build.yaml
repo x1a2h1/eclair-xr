@@ -1,0 +1,54 @@
+name: Build App
+on:
+  workflow_dispatch:
+  inputs:
+    platform:
+      description: 'platform'
+      required: true
+      default: 'windows-latest'
+      type: choice
+      options: [ 'windows-latest', 'macos-latest', 'ubuntu-20.04']
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: ${{ inputs.platform }}
+    runs-on: ${{ inputs.platform }}
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install Rust for windows-latest
+          if: inputs.platform == 'windows-latest'
+          uses: dtolnay/rust-toolchain@stable
+          with:
+            toolchain: stable-x86_64-msvc
+            target: x86_64-pc-windows-msvc
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Install Pake-cli
+        run: npm install pake-cli@latest -g
+
+      - name: Build for ${{ inputs.platform }}
+        run: pake ./dist/index.html --name ${{ inputs.platform }} --iter-copy-file
+
+      - name: Upload archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ inputs.platform }}.exe
+          path: dist

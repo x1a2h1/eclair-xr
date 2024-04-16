@@ -26,8 +26,6 @@ const method = {
       text: '加载场景中...',
       background: state.isDark ? '#000' : '#fff',
     })
-    let vd: any = navigator
-    console.log("xr", vd.xr, vd.xr.ondevicechange);
 
     var scene = document.querySelector('a-scene');
 
@@ -99,7 +97,7 @@ const method = {
             <a-asset-item id="school" src="/school.glb"></a-asset-item>
             <img id="imggg" src="/favicon.png" alt="">
             <img id="skyTexture" src="/background.jpg">
-            <video id="surfer" src="/183279.mp4" loop="true"></video>
+            <video id="surfer" src="/testvideo.mp4" loop="true"></video>
             <audio id="river" src="sound.mp3" preload="auto"></audio>
           </a-assets>
 

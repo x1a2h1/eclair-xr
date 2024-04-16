@@ -20,9 +20,6 @@ const method = {
   openSetting: () => {
     // 打开设置
     state.showSetting = true
-    let vd = window.navigator?.xr
-    console.log('显示连接设备', vd);
-
   }
 }
 </script>
