@@ -52,7 +52,7 @@ const method = {
 <template>
   <el-space v-loading="loading" :size="45" class="flex items-center justify-center" wrap>
     <div v-for="(item, index) in state.data" @click="method.go(item.id)"
-      class="w-sm h-75 p-0 m-0 flex flex-col items-cente shadow rd-3 bg-gray-100 dark:bg-gray-900" :key="index">
+      class="xxl:w-sm xxl:h-sm xl:w-18em xl:h-18em sm:w-12em sm:h-12em p-0 m-0 flex flex-col items-cente shadow rd-3 bg-gray-100 dark:bg-gray-900" :key="index">
       <div class="bg-cover w-full h-full overflow-hidden rd-t-3"
         :style="{ backgroundImage: 'url(' + item.cover + ')' }">
       </div>

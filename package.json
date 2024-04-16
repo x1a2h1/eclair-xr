@@ -17,6 +17,7 @@
     "aframe-extras": "^7.4.0",
     "element-plus": "^2.7.0",
     "gsap": "^3.12.5",
+    "pinia": "^2.1.7",
     "three": "^0.162.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

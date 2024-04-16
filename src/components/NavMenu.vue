@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
+import { useSettingsStore } from '../stores/SettingsStore'
+const settings = useSettingsStore()
 const state = reactive({
   activeIndex: '2',
   isDark: useDark(),
@@ -29,13 +31,13 @@ const method = {
     <el-menu :default-active="state.activeIndex" mode="horizontal" :ellipsis="false" @select="method.handleSelect()">
       <el-menu-item>
         <RouterLink class="flex" to="/">
-          <img class="w-45 h-auto" src="https://inis.cc/assets/imgs/logo-white.png" alt="logo" />
+          <img class="w-25 h-auto" src="/logo.png" alt="logo" />
         </RouterLink>
 
       </el-menu-item>
       <div class="flex-grow" />
-      <el-menu-item index="1">课程</el-menu-item>
-      <el-menu-item index="1">AR</el-menu-item>
+      <el-menu-item index="1"><RouterLink to='/'>课程</RouterLink></el-menu-item>
+      <el-menu-item index="2">AR</el-menu-item>
       <div class=" flex items-center justify-center pr-4%">
         <el-switch v-model="state.isDark">
           <template #active-action>
@@ -48,7 +50,12 @@ const method = {
         <div class="pl-4">
           <div @click="method.openSetting()" class="i-material-symbols-settings-applications-rounded w-2em h-2em" />
           <el-drawer v-model="state.showSetting" title="设置" size="300">
-            性能面板
+            性能面板 <el-switch
+    v-model="settings.aframeStatus"
+    inline-prompt
+    active-text="启用"
+    inactive-text="禁用"
+  />
           </el-drawer>
         </div>
       </div>
