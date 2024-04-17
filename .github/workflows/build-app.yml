@@ -69,7 +69,7 @@ jobs:
         shell: bash
         run: |
           echo "install pake on local"
-          npm install pake-cli@latest -g
+          npm install pake-cli -g
 
       - name: Rust cache restore
         uses: actions/cache/restore@v3
@@ -84,7 +84,7 @@ jobs:
           key: ${{ inputs.platform }}-cargo-${{ hashFiles('node_modules/pake-cli/src-tauri/Cargo.lock') }}
           
       - name: Build for ${{ inputs.platform }}-APP
-        run: pake ./dist/index.html --name 222720159 --iter-copy-file
+        run: pake ./dist/index.html --name 222720159 --iter-copy-file --debug
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
