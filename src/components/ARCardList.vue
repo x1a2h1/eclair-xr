@@ -3,7 +3,7 @@
 import { reactive } from 'vue';
 
 
-const state = reactive({
+const state:any = reactive({
 list: []
 });
 </script>
@@ -12,8 +12,8 @@ list: []
     <div v-for="item in state.list" :key="item.id" class="ar-card">
       <img :src="item.cover" alt="AR Card Cover" class="ar-card-cover">
       <div class="ar-card-content">
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
+        <h3>标题</h3>
+        <p>描述</p>
       </div>
     </div>
   </div>

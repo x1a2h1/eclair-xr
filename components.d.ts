@@ -7,7 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ARCard: typeof import('./src/components/ARCard.vue')['default']
     ARCardList: typeof import('./src/components/ARCardList.vue')['default']
     CardList: typeof import('./src/components/CardList.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -15,7 +14,6 @@ declare module 'vue' {
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElEmpty: typeof import('element-plus/es')['ElEmpty']
-    ElImage: typeof import('element-plus/es')['ElImage']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElPagination: typeof import('element-plus/es')['ElPagination']
