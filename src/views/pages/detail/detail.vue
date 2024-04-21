@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import { useDark } from '@vueuse/core';
-
 import AFRAME from 'aframe';
 import 'aframe-blink-controls'
 import 'aframe-extras';
 import { onMounted } from 'vue';
 import { ElLoading, ElNotification } from 'element-plus';
 
+
 import { useSettingsStore } from '../../../stores/SettingsStore';
 const settings = useSettingsStore()
+
+
 
 const state = reactive({
   isDark: useDark(),
@@ -95,6 +97,8 @@ const method = {
 
           <a-assets>
             <a-asset-item id="school" src="/school.glb"></a-asset-item>
+
+            <a-asset-item id="hall" src="/hall.glb"></a-asset-item>
             <img id="imggg" src="/favicon.png" alt="">
             <img id="skyTexture" src="/background.jpg">
             <video id="surfer" src="/testvideo.mp4" loop="true"></video>
@@ -103,7 +107,8 @@ const method = {
 
           <a-entity sound="src: #river"></a-entity>
 
-          <a-entity glTF-model="#school"></a-entity>
+          <a-entity v-if="$route.params.id == '1'" glTF-model="#school"> </a-entity>
+          <a-entity v-if="$route.params.id == '2'" glTF-model="#hall"> </a-entity>
 
           <a-sky id="bg" radius="90" src="#skyTexture" theta-length="180"></a-sky>
           <a-video v-if="state.videoPlayer" src="#surfer" width="6" height="1.5" position="0 1.5 6.05"
@@ -145,24 +150,33 @@ const method = {
         <div class="bg-amber w-8em font-bold text-center rounded-2">场景描述</div>
         <div class="mt-4">
           <p>
-            这是一个美丽的场景，展示了学校的建筑和环境。你可以看到教室、绿化。整个场景呈现出一种宁静和整洁的氛围，为学生提供了一个良好的学习环境。
+            这是场景描述内容，用户介绍场景。
           </p>
         </div>
       </div>
     </el-card>
-    <el-card class="xl:ml-4% lg:ml-1%" style="min-width: 300px">
+    <div class="xl:ml-4% lg:ml-1%" >
+    <el-card style="min-width: 300px">
       <template #header>
         <div class="card-header">
-          <span class="text-2xl font-bold">当前热度</span>
+          <span class="text-2xl font-bold text-center">热度</span>
         </div>
       </template>
       <div>
-        <div>标题</div>
-        背景
-        description
+        <el-skeleton />
+  <br />
+  <el-skeleton style="--el-skeleton-circle-size: 100px">
+    <template #template>
+      <el-skeleton-item variant="circle" />
+    </template>
+  </el-skeleton>
       </div>
     </el-card>
+    <el-card loading class="mt-4 ha">
+      推荐
+      <el-empty :image-size="100" description="暂无内容" />
+    </el-card>
+    </div>
   </div>
 </template>
-
 <style scoped></style>

@@ -15,31 +15,15 @@ const state = reactive({
   data: [
     {
       id: 1,
-      title: 'title1',
-      cover: 'https://bot.gekj.net/upload/other/2024-02-07/20240207122449169.jpg',
-      description: 'description1'
+      title: '学校场景',
+      cover: '/school-cover.png',
+      description: '教室交互场景'
     },
     {
-      id: 1,
-      title: 'title1',
-      cover: 'https://bot.gekj.net/upload/other/2024-02-07/20240207122449169.jpg',
-      description: 'description1'
-    },
-    {
-      id: 1,
-      title: 'title1',
-      cover: 'https://bot.gekj.net/upload/other/2024-02-07/20240207122449169.jpg',
-      description: 'description1'
-    }, {
-      id: 1,
-      title: 'title1',
-      cover: 'https://bot.gekj.net/upload/other/2024-02-07/20240207122449169.jpg',
-      description: 'description1'
-    }, {
-      id: 1,
-      title: 'title1',
-      cover: 'https://bot.gekj.net/upload/other/2024-02-07/20240207122449169.jpg',
-      description: 'description1'
+      id: 2,
+      title: 'demo场景',
+      cover: 'hall-cover.png',
+      description: 'VR大厅'
     }
   ]
 })
