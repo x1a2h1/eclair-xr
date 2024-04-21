@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 import { TresCanvas } from '@tresjs/core';
-
+ import qrcodeVue from 'qrcode.vue';
 const state = reactive({
   loading: false
 })
@@ -32,7 +32,7 @@ const method = {
       </el-card>
     </el-space>
 
-    <div id="热门列表" class="mt-10 flex flex-col ma">
+    <div id="热门列表" class="mt-10 flex flex-col xl:m-4%">
       <div class="flex">
         <div class="i-streamline-emojis:fire w-2em h-2em" />
         <span class="font-size-6">热门课程</span>
@@ -40,20 +40,21 @@ const method = {
           <div class="i-mage:reload w-1em h-1em"></div>换一批
         </el-button>
       </div>
-      <div class="mt-5 flex items-center justify-center">
+      <div class="mt-5 flex items-center justify-start">
         <CardList :loading="state.loading" />
       </div>
     </div>
-    <div class="mt-10 flex flex-col ma">
+    <div class="mt-10 flex flex-col m-0 xl:m-4%">
       <div class="flex">
         <div class="i-streamline-emojis:fire w-2em h-2em"></div>
         <span class="font-size-6">AR+</span>
       </div>
-      <div class="flex items-center justify-center mt-5">
-        <el-popover v-for="i in 1" placement="bottom" title="Title" trigger="click"
-          content="this is content, this is content, this is content" :key="i">
+      <div class="flex items-center justify-start mt-5">
+        <el-popover v-for="i in 1" placement="bottom" title="🔥" :width="200" trigger="click"
+           :key="i">
+          
           <template #reference>
-            <div class="m-1 min-w-100 min-h-75 max-w-lg max-h-lg rounded-lg">
+            <div class="m-1 min-w-75 min-h-75 max-w-sm max-h-lg rounded-lg">
               <TresCanvas clear-color="#82DBC5">
                 <TresPerspectiveCamera :position="[0, 0, 0]" :look-at="[0, 0, 0]" />
                 <TresMesh>
@@ -65,6 +66,10 @@ const method = {
               <div class="position-absolute z-99 top-1">VR</div>
             </div>
           </template>
+          <span>请用受支持设备扫码体验！</span>
+          <div class="text-center">
+            <qrcode-vue value="AR" level="M" :size="150" Mender-as="svg"></qrcode-vue>
+          </div>
         </el-popover>
       </div>
     </div>

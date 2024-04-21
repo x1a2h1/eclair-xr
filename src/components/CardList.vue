@@ -29,7 +29,7 @@ const state = reactive({
 })
 const method = {
   go: (id: number) => {
-    router.push('/detail/' + id)
+    router.replace('/detail/' + id)
   }
 }
 </script>

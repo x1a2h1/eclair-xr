@@ -24,7 +24,6 @@ const methods = {
     if (flag)
     {
       console.log("移动端",flag);
-      alert(flag)
     }else {
       console.log("AR眼镜",flag);
   console.log(router);

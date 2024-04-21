@@ -4,7 +4,13 @@ import { useDark, useToggle } from '@vueuse/core'
 import { useSettingsStore } from '../stores/SettingsStore'
 const settings = useSettingsStore()
 const state = reactive({
-  activeIndex: '2',
+  activeIndex: '0',
+  navbar:[
+    {
+      name:'课程',
+      path:'/list'
+    }
+  ],
   isDark: useDark(),
   navData: [],
   showSetting: false,
@@ -26,15 +32,14 @@ const method = {
 <template>
   <div class="z999 bg-white dark:bg-black">
     <el-menu :default-active="state.activeIndex" mode="horizontal" :ellipsis="false" @select="method.handleSelect()">
-      <el-menu-item>
+      <el-menu-item index="0">
         <RouterLink class="flex" to="/">
           <img class="w-25 h-auto" src="/logo.png" alt="logo" />
         </RouterLink>
 
       </el-menu-item>
       <div class="flex-grow" />
-      <el-menu-item index="1"><RouterLink to='/'>课程</RouterLink></el-menu-item>
-      <el-menu-item index="2">AR</el-menu-item>
+      <el-menu-item index="1"><RouterLink to='/list' style="text-decoration: none;">课程</RouterLink></el-menu-item>
       <div class=" flex items-center justify-center pr-4%">
         <el-switch v-model="state.isDark">
           <template #active-action>
