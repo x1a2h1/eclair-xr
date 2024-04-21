@@ -1,4 +1,18 @@
 <script setup lang="ts">
+import { ElLoading } from 'element-plus'
+import { onMounted,onBeforeMount,ref } from 'vue';
+let loading:any = ref(null)
+onBeforeMount(() => {
+  loading = ElLoading.service({
+    fullscreen: true,
+    text: 'Loading...',
+    background: '#CCE5FF',
+  })
+})
+
+onMounted(()=>{
+  loading.close()
+})
 </script>
 
 <template>

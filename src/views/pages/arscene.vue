@@ -12,7 +12,7 @@ const state = reactive({
   dialog:false,
   qrcode:'无权限访问！',
 })
-state.qrcode = "https://192.168.110.72:5173/#" + router.currentRoute.value.fullPath;
+state.qrcode = "https://xr.drapery.cn/#" + router.currentRoute.value.fullPath;
 
 onBeforeMount(() => {
   methods.init();
