@@ -11,12 +11,34 @@ const state: any = reactive({
     powerPreference: "high-performance",
   },
 });
+
+const method = {
+  goAnchor: (id: string,offsetTop:number = 0) => {
+    let anchor = document.getElementById(id);
+    if (anchor){
+      let rect = anchor.getBoundingClientRect();
+      let top = rect.top + window.pageYOffset - offsetTop;
+      window.scrollTo({
+        top:top,
+        behavior:'smooth'
+      })
+    }
+    // anchor?.scrollIntoView({
+    //   block: 'start',
+    //   inline: 'nearest',
+    //   behavior: 'smooth',
+    // });
+
+  }
+}
 </script>
 <template>
   <div class="repulsion-effect__content">
     <h2>eclair XR</h2>
     <h3>基于VR/AR在线上教育的应用</h3>
   </div>
+  <div class="absolute bottom-10 w-full text-center z-99"><el-button @click="method.goAnchor('home',100)"
+      type="success">查阅内容 <span class="i-material-symbols-arrow-cool-down-rounded"></span></el-button></div>
   <div class="repulsion-effect__bg" />
   <div id="canvas">
     <TresCanvas v-bind="state.gl">
@@ -34,7 +56,7 @@ const state: any = reactive({
 
       <TresRectAreaLight color="#FF9999" :decay="0" :width="1000" :height="1000" :position="[5, 20, 50]"
         :look-at="[0, 0, 0]" />
-    <scene />
+      <scene />
     </TresCanvas>
   </div>
 

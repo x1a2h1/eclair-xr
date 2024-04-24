@@ -14,10 +14,12 @@ const method = {
     }, 3000);
   }
 }
+
 </script>
 <template>
-  <RepulsionEffect />
-  <div class="flex flex-col">
+  <RepulsionEffect >
+  </RepulsionEffect>
+  <div id="home" class="flex flex-col">
     <el-space wrap :size="40" class="flex justify-center">
       <el-card v-for="i in 4" :key="i" class="hover:-mt-2" body-class="w-80">
         <div class="flex">
@@ -32,7 +34,7 @@ const method = {
       </el-card>
     </el-space>
 
-    <div id="热门列表" class="mt-10 flex flex-col xl:m-4%">
+    <div id="hotvr" class="mt-10 flex flex-col xl:m-4%">
       <div class="flex">
         <div class="i-streamline-emojis:fire w-2em h-2em" />
         <span class="font-size-6">热门课程</span>
