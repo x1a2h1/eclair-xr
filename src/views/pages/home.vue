@@ -54,13 +54,12 @@ const method = {
       <div class="flex items-center justify-start mt-5">
         <el-popover v-for="i in 1" placement="bottom" title="🔥" :width="200" trigger="click"
            :key="i">
-          
           <template #reference>
-            <div class="m-1 min-w-75 min-h-75 max-w-sm max-h-lg rounded-lg">
+            <div class="min-w-50 min-h-50 max-w-sm max-h-lg rounded-lg">
               <TresCanvas clear-color="#82DBC5">
                 <TresPerspectiveCamera :position="[0, 0, 0]" :look-at="[0, 0, 0]" />
                 <TresMesh>
-                  <TresTorusGeometry :args="[1, 0.5, 16, 32]" />
+                  <TresTorusGeometry :args="[1, 0, 0, 0]"/>
                   <TresMeshBasicMaterial color="orange" />
                 </TresMesh>
                 <TresAmbientLight :intensity="1" />
