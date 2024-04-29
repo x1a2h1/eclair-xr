@@ -5,7 +5,7 @@ on:
       platform:
         description: 'platform'
         required: true
-        default: 'macos-latest'
+        default: 'windows-latest'
         type: choice
         options:
           - 'windows-latest'
@@ -84,7 +84,7 @@ jobs:
           key: ${{ inputs.platform }}-cargo-${{ hashFiles('node_modules/pake-cli/src-tauri/Cargo.lock') }}
           
       - name: Build for ${{ inputs.platform }}-APP
-        run: pake ./dist/index.html --name eclair --iter-copy-file
+        run: pake ./dist/index.html --name eclair --icon ./dist/eclair.ico --iter-copy-file
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
