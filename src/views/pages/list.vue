@@ -1,9 +1,11 @@
 <!-- 列表 -->
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { reactive } from 'vue';
 
 
 const state = reactive({
+  loading:true,
   tabsIndex:0,
   tabs:[
     {
@@ -16,6 +18,27 @@ const state = reactive({
     }
   ]
 })
+onMounted(async () => {
+  await methods.init()
+})
+
+const methods = {
+  init:async()=>{
+    setTimeout(() => {
+      state.loading = false
+    }, 1300);
+  },
+  changeTab(index: number) {
+    if (state.tabsIndex == index) return
+    state.tabsIndex = index;
+
+    state.loading = true;
+    setTimeout(() => {
+      state.loading = false
+    }, 1500);
+  },
+}
+
 </script>
 <template>
   <div class="m-0% sm:m-2% xl:m-4%">
@@ -31,13 +54,12 @@ const state = reactive({
     'rounded-1',
     { 'bg-red': state.tabsIndex == index },
     { 'hover:bg-gray-500' : state.tabsIndex != index },
-  ]"   @click="state.tabsIndex = index">{{ item.title }}</div>
+  ]"   @click="methods.changeTab(index)">{{ item.title }}</div>
     </div>
     <div class="flex items-center mt-2%">
-      <card-list v-if="state.tabsIndex == 0" :loading="false"/>
-      <div v-else class="text-center flex items-center justify-center w-full h-full"> 
-      <el-empty :image-size="200" description="暂无资源"/>
-      </div>
+      <card-list v-if="state.tabsIndex == 0" :loading="state.loading" type="vr"/>
+      <card-list v-if="state.tabsIndex == 1" :loading="state.loading" type="ar"/>
+      
     </div>
     <div class="mt-2%">
       <el-pagination
@@ -47,6 +69,5 @@ const state = reactive({
     </div>
 
     <!-- 列表内容 -->
-    ar
   </div>
 </template>

@@ -43,7 +43,7 @@ const method = {
         </el-button>
       </div>
       <div class="mt-5 flex items-center justify-start">
-        <CardList :loading="state.loading" />
+        <CardList :loading="state.loading" type="vr" />
       </div>
     </div>
     <div class="mt-10 flex flex-col m-0 xl:m-4%">
