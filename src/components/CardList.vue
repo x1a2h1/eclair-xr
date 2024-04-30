@@ -91,7 +91,7 @@ const method = {
           <TresPerspectiveCamera :position="[3, 3, 3]" :look-at="[0, 0, 0]" />
           <TresMesh>
             <TresTorusGeometry :args="[1, 0.5, 24, 32]" />
-            <TresMeshBasicMaterial color="orange" />
+            <TresMeshBasicMaterial color="#ff9300" />
           </TresMesh>
           <TresAmbientLight :intensity="1" />
         </TresCanvas>
