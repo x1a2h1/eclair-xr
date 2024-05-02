@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { TresCanvas } from '@tresjs/core';
- import qrcodeVue from 'qrcode.vue';
 const state = reactive({
   loading: false
 })
@@ -51,27 +49,8 @@ const method = {
         <div class="i-streamline-emojis:fire w-2em h-2em"></div>
         <span class="font-size-6">AR+</span>
       </div>
-      <div class="flex items-center justify-start mt-5">
-        <el-popover v-for="i in 1" placement="bottom" title="🔥" :width="200" trigger="click"
-           :key="i">
-          <template #reference>
-            <div class="min-w-50 min-h-50 max-w-sm max-h-lg rounded-lg">
-              <TresCanvas clear-color="#82DBC5">
-                <TresPerspectiveCamera :position="[0, 0, 0]" :look-at="[0, 0, 0]" />
-                <TresMesh>
-                  <TresTorusGeometry :args="[1, 0, 0, 0]"/>
-                  <TresMeshBasicMaterial color="orange" />
-                </TresMesh>
-                <TresAmbientLight :intensity="1" />
-              </TresCanvas>
-              <div class="position-absolute z-99 top-1">VR</div>
-            </div>
-          </template>
-          <span>请用受支持设备扫码体验！</span>
-          <div class="text-center">
-            <qrcode-vue value="AR" level="M" :size="150" Mender-as="svg"></qrcode-vue>
-          </div>
-        </el-popover>
+      <div class="mt-5 flex items-center justify-start">
+        <CardList :loading="false" type="ar" />
       </div>
     </div>
     <div class="mb-24">

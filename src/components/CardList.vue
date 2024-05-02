@@ -12,7 +12,6 @@ const props = withDefaults(defineProps<Props>(), {
   loading: Boolean,
   type: String
 })
-console.log(props.loading);
 
 const state: any = reactive({
   data: [],
@@ -87,7 +86,7 @@ const method = {
     </router-link>
     <div v-if="type == 'ar'" v-for="i in 4">
       <div @click="state.activeMaskIndex = i" class="min-w-75 min-h-75 max-w-sm max-h-lg rounded-lg relative">
-        <TresCanvas clear-color="#82DBC5" class="z-99">
+        <TresCanvas clear-color="#82DBC5">
           <TresPerspectiveCamera :position="[3, 3, 3]" :look-at="[0, 0, 0]" />
           <TresMesh>
             <TresTorusGeometry :args="[1, 0.5, 24, 32]" />
