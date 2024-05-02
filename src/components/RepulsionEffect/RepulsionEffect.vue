@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { TresCanvas } from '@tresjs/core';
+import * as THREE from 'three';
 import { reactive } from 'vue';
-
-
 
 const state: any = reactive({
   gl: {
@@ -10,6 +9,9 @@ const state: any = reactive({
     shadows: true,
     powerPreference: "high-performance",
   },
+  scene:{
+    camera:new THREE.Vector3(0, 55,1.5),
+  }
 });
 
 const method = {
@@ -23,12 +25,6 @@ const method = {
         behavior:'smooth'
       })
     }
-    // anchor?.scrollIntoView({
-    //   block: 'start',
-    //   inline: 'nearest',
-    //   behavior: 'smooth',
-    // });
-
   }
 }
 </script>
@@ -42,7 +38,7 @@ const method = {
   <div class="repulsion-effect__bg" />
   <div id="canvas">
     <TresCanvas v-bind="state.gl">
-      <TresPerspectiveCamera :position="[0, 55, 1.5]" :rotation-x="-1.57" :fov="20" />
+      <TresPerspectiveCamera :position="state.scene.camera" :rotation-x="-1.57" :fov="20" />
       <!-- <OrbitControls /> -->
       <TresAmbientLight color="#ffffff" />
 
