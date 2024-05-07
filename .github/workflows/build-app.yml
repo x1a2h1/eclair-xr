@@ -32,9 +32,9 @@ jobs:
           node-version: 18
           
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
 
       - name: Install Rust for ubuntu-20.04
         if: inputs.platform == 'ubuntu-20.04'
