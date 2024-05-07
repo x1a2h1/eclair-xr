@@ -87,10 +87,10 @@ const method = {
     <div v-if="type == 'ar'" v-for="i in 4">
       <div @click="state.activeMaskIndex = i" class="min-w-75 min-h-75 max-w-sm max-h-lg rounded-lg relative">
         <TresCanvas clear-color="#82DBC5">
-          <TresPerspectiveCamera :position="[3, 3, 3]" :look-at="[0, 0, 0]" />
+          <TresPerspectiveCamera :position="([3, 3, 3])" :look-at="[0, 0, 0]" />
           <TresMesh>
             <TresTorusGeometry :args="[1, 0.5, 24, 32]" />
-            <TresMeshBasicMaterial color="#ff9300" />
+            <TresMeshBasicMaterial :color="'#ff9300'" />
           </TresMesh>
           <TresAmbientLight :intensity="1" />
         </TresCanvas>
