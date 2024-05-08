@@ -1,5 +1,7 @@
 name: Build App
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
     inputs:
       platform:
@@ -12,8 +14,7 @@ on:
           - 'macos-latest'
           - 'ubuntu-20.04'
           
-  push:
-    branches: [ main ]
+  
 
 jobs:
   build:
@@ -94,7 +95,7 @@ jobs:
       - name: Upload archive
         uses: actions/upload-artifact@v3
         with:
-          name: output-${{ inputs.platform }}.zip
+          name: output-${{ inputs.platform }}-x86_64
           path: ./eclair.msi
           retention-days: 3
           
