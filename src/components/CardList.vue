@@ -123,8 +123,13 @@ const method = {
           <TresAmbientLight :intensity="1" />
         </TresCanvas>
         <div v-if="state.activeMaskIndex == index"
-          class="position-absolute top-0 cursor-pointer w-full h-full z-100 bg-black opacity-50">
-          <qrcode-vue :value="'https://xr.dukui.cn/detail/arscene/' + item.id" :level="level" :size="150" :render-as="renderAs" />
+          class="position-absolute top-0 cursor-pointer w-full h-full z-1 bg-black opacity-80">
+          <div class=" flex justify-center items-center text-center mt-10">
+            <qrcode-vue :value="'https://xr.dukui.cn/detail/arscene/' + item.id" :level="level" :size="150" :render-as="renderAs" />
+          </div>
+          <div class="flex justify-center items-center text-center">
+          <span>请使用移动设备，或AR设备访问！</span>
+            </div>
         </div>
       </div>
     </router-link>
