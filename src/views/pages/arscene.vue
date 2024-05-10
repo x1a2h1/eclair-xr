@@ -12,7 +12,7 @@ const state = reactive({
   dialog:false,
   qrcode:'无权限访问！',
 })
-state.qrcode = "https://xr.drapery.cn/#" + router.currentRoute.value.fullPath;
+state.qrcode = "https://xr.dukui.cn" + router.currentRoute.value.fullPath;
 
 onBeforeMount(() => {
   methods.init();
@@ -27,7 +27,7 @@ const methods = {
     }else {
       console.log("AR眼镜",flag);
   console.log(router);
-      state.dialog = true;
+      // state.dialog = true;
     }
   },
   replaceHome:()=>{
@@ -58,11 +58,10 @@ const methods = {
       </div>
     </template>
   </el-dialog>
-<a-scene v-if="!state.dialog" ar avatar-renderer>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
+
+  <!-- 3D 场景 -->
+  <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+    <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
+    <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: 29.693086; longitude: 115.667849" scale="10 10 10"></a-entity>
+</a-scene>
 </template>

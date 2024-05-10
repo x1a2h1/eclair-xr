@@ -15,11 +15,11 @@ const method = {
 
 </script>
 <template>
-  <RepulsionEffect >
+  <RepulsionEffect>
   </RepulsionEffect>
   <div id="home" class="flex flex-col">
     <el-space wrap :size="40" class="flex justify-center">
-      <el-card v-for="i in 4" :key="i" class="hover:-mt-2" body-class="w-80">
+      <!-- <el-card v-for="i in 4" :key="i" class="hover:-mt-2" body-class="w-80">
         <div class="flex">
           <div class="flex flex-col items-start">
             说明：{{ i }}
@@ -29,7 +29,7 @@ const method = {
             <div class="i-twemoji-grinning-face-with-smiling-eyes hover:i-twemoji-face-with-tears-of-joy" />
           </div>
         </div>
-      </el-card>
+      </el-card> -->
     </el-space>
 
     <div id="hotvr" class="mt-10 flex flex-col xl:m-4%">

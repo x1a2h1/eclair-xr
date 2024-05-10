@@ -34,7 +34,7 @@ const method = {
     <h3>基于VR/AR在线上教育的应用</h3>
   </div>
   <div class="absolute bottom-10 w-full text-center z-99"><el-button @click="method.goAnchor('home',100)"
-      type="success">查阅内容 <span class="i-material-symbols-arrow-cool-down-rounded"></span></el-button></div>
+      type="primary">查阅内容 <span class="i-material-symbols-arrow-cool-down-rounded"></span></el-button></div>
   <div class="repulsion-effect__bg" />
   <div id="canvas">
     <TresCanvas v-bind="state.gl">

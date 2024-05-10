@@ -1,8 +1,12 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import router from '../router';
 import { onMounted } from 'vue';
 import { TresCanvas } from '@tresjs/core';
+import QrcodeVue from 'qrcode.vue';
+import type { Level, RenderAs } from 'qrcode.vue'
+const level = ref<Level>('M')
+  const renderAs = ref<RenderAs>('svg')
 export interface Props {
   loading: Boolean,
   type: string
@@ -15,9 +19,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 const state: any = reactive({
   data: [],
-  activeMaskIndex:null,
+  qrcode:'无权限访问！',
+  activeMaskIndex: null,
 })
-
 onMounted(async () => {
   await method.init()
 })
@@ -47,25 +51,48 @@ const method = {
     ]
   },
   getArData: async () => {
+    let path = ''
+    let u = navigator.userAgent;
+    let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;   //判断是否是 android终端
+    let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);     //判断是否是 iOS终端
+    if (isAndroid) {
+      path = '/arscene/'
+    } else if (isIOS) {
+      path = '/1.usdz'
+    }
     state.data = [
       {
         id: 1,
         title: 'AR场景',
         cover: '/ar-cover.png',
-        description: 'AR场景'
+        description: 'AR场景',
+        src: path
       }
     ]
   },
+  getQRCode:(path:string)=>{
+    
+  },
   go: (id: number) => {
-    let path = ''
-    if (props.type == 'vr') {
-      path = '/detail/'
-    } else {
-      path = '/arscene/'
+    let u = navigator.userAgent;
+    let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;   //判断是否是 android终端
+    let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);     //判断是否是 iOS终端
+
+    if (isAndroid) {
+      let path = ''
+      if (props.type == 'vr') {
+        path = '/detail/'
+      } else {
+        path = '/arscene/'
+      }
+      router.push(path + id)
+    } else if (isIOS) {
+
+      router.replace('/1122333.usdz')
     }
-    router.replace(path + id)
-  }
+  },
 }
+
 </script>
 <template>
   <el-space v-loading="loading" :size="45" class="flex items-center justify-center" wrap>
@@ -84,8 +111,9 @@ const method = {
         </div>
       </div>
     </router-link>
-    <div v-if="type == 'ar'" v-for="i in 4">
-      <div @click="state.activeMaskIndex = i" class="min-w-75 min-h-75 max-w-sm max-h-lg rounded-lg relative">
+    <router-link v-if="type == 'ar'" v-for="(item, index) in state.data" :to="item.src">
+      <div @click="state.activeMaskIndex = index;" 
+        class="min-w-75 min-h-75 max-w-sm max-h-lg rounded-lg relative">
         <TresCanvas clear-color="#82DBC5">
           <TresPerspectiveCamera :position="[3, 3, 3]" :look-at="[0, 0, 0]" />
           <TresMesh>
@@ -94,9 +122,12 @@ const method = {
           </TresMesh>
           <TresAmbientLight :intensity="1" />
         </TresCanvas>
-        <div v-if="state.activeMaskIndex == i" class="position-absolute top-0 cursor-pointer w-full h-full z-100 bg-black opacity-50">二维码</div>
+        <div v-if="state.activeMaskIndex == index"
+          class="position-absolute top-0 cursor-pointer w-full h-full z-100 bg-black opacity-50">
+          <qrcode-vue :value="'https://xr.dukui.cn/detail/arscene/' + item.id" :level="level" :size="150" :render-as="renderAs" />
+        </div>
       </div>
-    </div>
+    </router-link>
 
   </el-space>
   <div v-if="state.data.length == 0" class="text-center flex items-center justify-center w-full h-full">
