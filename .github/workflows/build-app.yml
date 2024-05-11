@@ -88,7 +88,7 @@ jobs:
           key: ${{ inputs.platform }}-cargo-${{ hashFiles('node_modules/pake-cli/src-tauri/Cargo.lock') }}
           
       - name: Build for ${{ inputs.platform }}-APP
-        run: pake ./dist/index.html --name eclair --icon ./dist/eclair.ico --iter-copy-file
+        run: pake ./dist/index.html --name eclair --icon ./dist/eclair.ico --use-local-file
 
       - name: Upload archive
         uses: actions/upload-artifact@v3
